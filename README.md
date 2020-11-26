@@ -8,7 +8,7 @@ To run the model described in the paper [LHC-friendly minimal freeze-in models](
 
 After that, you just need to run MadGraph using `/bin/mg5_amc`, import the model `import model Name_of_the_folder`, generate the process of interest (such as `generate p p > ~he ~HE, (~he > l- ~s0), (~HE > l+ ~s0)`, but this depends on the type of the charged parent), use the `output` command to create a folder in which the runs will be saved and `launch` the simulation. Just remember to add the showering/hadronization and the detector simulation softwares.
 
-There is a shortcut to all of what was described above that is by using a configuration file that has all the options that need to be active and that will input the necessary commands. Inside the folder `configuration_files` in the Delphes branch are the files needed to perform this. The `param_card.dat, run_card.dat` and `delphes_card.dat` are also necessary. Any change in the model or the run parameters, or in the detector simulation can be made in these files before starting the simulation.
+There is a shortcut to all of what was described above that is by using a configuration file that has all the options that need to be active and that will input the necessary commands. Inside the folder `configuration_files` in the Delphes branch are the files needed to perform this. The `param_card.dat`, `run_card.dat` and `delphes_card.dat` are also necessary. Any change in the model or the run parameters, or in the detector simulation can be made in these files before starting the simulation.
 
 ## Simulating LLP tracks with Delphes
 
