@@ -6,4 +6,4 @@ shower = Pythia8
 detector = Delphes
 param_card_FIMP_lepton.dat
 run_card_FIMP_lepton.dat
-delphes_card_FIMP_lepton.dat
+delphes_card.dat
