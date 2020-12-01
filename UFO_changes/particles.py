@@ -1,6 +1,6 @@
-# This file was automatically created by FeynRules 2.3.2
+# This file was automatically created by FeynRules 2.3.32
 # Mathematica version: 11.3.0 for Linux x86 (64-bit) (March 7, 2018)
-# Date: Fri 2 Nov 2018 09:23:25
+# Date: Tue 26 Nov 2019 22:32:05
 
 
 from __future__ import division
@@ -385,7 +385,7 @@ G__plus__ = Particle(pdg_code = 251,
 
 G__minus__ = G__plus__.anti()
 
-P__tilde__s0 = Particle(pdg_code = 255,
+P__tilde__s0 = Particle(pdg_code = 5000012,
                         name = '~s0',
                         antiname = '~s0',
                         spin = 1,
@@ -399,7 +399,7 @@ P__tilde__s0 = Particle(pdg_code = 255,
                         LeptonNumber = 0,
                         Y = 0)
 
-P__tilde__he = Particle(pdg_code = 1000101,
+P__tilde__he = Particle(pdg_code = 5000011,
                         name = '~he',
                         antiname = '~HE',
                         spin = 2,
@@ -414,3 +414,4 @@ P__tilde__he = Particle(pdg_code = 1000101,
                         Y = 0)
 
 P__tilde__HE = P__tilde__he.anti()
+
