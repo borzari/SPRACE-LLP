@@ -13,4 +13,4 @@ There is a shortcut to all of what was described above that is by using a config
 ## Simulating LLP tracks with Delphes
 
 Inside the folder `delphes_with_tracks` are the files of the first atempt to reconstruct the charged parent track using Delphes. 
-All the files need to be added to the modules folder inside Delphes except `delphes_card_FIMP_leptons.dat` that should be used as the Delphes card in MadGraph. Notice that this is still in the very beginning and the assumptions made are not what should be used, which means that more studies about the efficiency of HSCP charged tracks are necessary. This is just the starting point.
+All the files need to be added to the modules folder inside Delphes except `delphes_card_FIMP_leptons.dat` that should be used as the Delphes card in MadGraph. After adding/modifying the files, just use the commands `./configure` and then `make -j 8` to reconfigure and rebuild the Delphes folder. Notice that this is still in the very beginning and the assumptions made are not what should be used, which means that more studies about the efficiency of HSCP charged tracks are necessary. This is just the starting point.
