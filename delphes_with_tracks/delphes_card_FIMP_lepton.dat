@@ -869,6 +869,7 @@ module TreeWriter TreeWriter {
   add Branch UniqueObjectFinder/electrons Electron Electron
   add Branch UniqueObjectFinder/photons Photon Photon
   add Branch UniqueObjectFinder/muons Muon Muon
+  add Branch HSCP/hscp HSCP HSCP
 
   add Branch FatJetFinder/jets FatJet Jet
 

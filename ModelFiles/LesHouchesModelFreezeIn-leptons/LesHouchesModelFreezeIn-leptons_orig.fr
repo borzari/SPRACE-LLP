@@ -1,0 +1,169 @@
+(*********************************************************************)
+(*********************************************************************)
+(****** FeynRules model file for the LH non-thermal DM project  ******)
+(******                                                         ******)
+(****** Authors: A. Goudelis                                    ******)
+(******                                                         ******)
+(****** Feel free to use this model file!                       ******)
+(*********************************************************************)
+(*********************************************************************)
+
+M$ModelName = "LesHouchesModelFreezeIn-leptons";
+
+M$Information = {Authors -> {"Andreas Goudelis"}, 
+                 Version -> "1.0",
+                 Date -> "18.10.2017",
+                 Institutions -> {"LPTHE Paris / UPMC Paris VI"},
+                 Emails -> {"andreas.goudelis@lpthe.jussieu.fr"}
+};
+FeynmanGauge = True;
+
+M$InteractionOrderHierarchy = {  {NP,  1}, {QCD, 1}, {QED, 2} };
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+
+M$Parameters = {
+(* CalcHEP related parameters *)
+  QS    == { TeX->Subscript[Q,s], ParameterType->External, Value->100,  Description->"QCD scale for running quark masses in CalcHEP"},
+
+ (* Internal NP parameters*)
+  lam    == { TeX->Subscript[\[Lambda],H], ComplexParameter -> False, ParameterType->Internal, Value->mh^2/(2 vev^2),   InteractionOrder->{QED, 2}, Description->"SM Higgs quartic interaction"},
+  muH    == { TeX->Subscript[\[Mu],H],     ComplexParameter -> False, ParameterType->Internal, Value->Sqrt[vev^2 lam],  Description->"Higgs mass parameter"},
+  mus0   == { TeX->Subscript[\[Mu],s0],ComplexParameter -> False, ParameterType->Internal, Value->Sqrt[ms0^2 + lams0h vev^2],  Description->"Higgs mass parameter"},
+                                                                                                  
+ (* External NP parameters*)
+  yHEeR  == { TeX->Subscript[y,HEeR],  ComplexParameter -> False, ParameterType->External, Value->0.00002, InteractionOrder->{NP ,1}, Description->"Dark scalar - heavy electron - SM RH electron Yukawa"},
+  yHEmuR == { TeX->Subscript[y,HEmuR], ComplexParameter -> False, ParameterType->External, Value->0.00002, InteractionOrder->{NP ,1}, Description->"Dark scalar - heavy electron - SM RH muon Yukawa"},
+  yHEtaR == { TeX->Subscript[y,HEtaR], ComplexParameter -> False, ParameterType->External, Value->0.00002, InteractionOrder->{NP ,1}, Description->"Dark scalar - heavy electron - SM RH tau Yukawa"},
+  lams0h  == { TeX->Subscript[\[Lambda],s0h], ComplexParameter -> False, ParameterType->External, Value->0.02,    InteractionOrder->{NP ,1}, Description->"Dark scalar - Higgs doublet coupling"},
+  lams0   == { TeX->Subscript[\[Lambda],s0],  ComplexParameter -> False, ParameterType->External, Value->0.1,     InteractionOrder->{NP, 1}, Description->"Dark scalar quartic interaction"}
+
+};
+
+(* ************************** *)
+(* **** Particle classes **** *)
+(* ************************** *)
+M$ClassesDescription = {
+
+(* The physical Higgs boson *)
+S[1] == { 
+         ClassName -> h, 
+         SelfConjugate-> True, 
+         QuantumNumbers -> {}, 
+         Mass->{mh,  125},  
+         Width->{wh,0.005}, 
+         ParticleName-> "h", 
+         PDG->25, 
+         PropagatorLabel->"h", 
+         PropagatorType->ScalarDash, 
+         PropagatorArrow->None},
+(* Higgs: Goldstones  *)
+S[2] == {
+         ClassName       -> G0,
+         SelfConjugate   -> True,
+         Goldstone       -> Z,
+         Mass            -> {MZ, 91.1876},
+         Width           -> {WZ, 2.4952},
+         PropagatorLabel -> "Go",
+         PropagatorType  -> D,
+         PropagatorArrow -> None,
+         PDG             -> 250,
+         ParticleName    -> "G0",
+         FullName        -> "G0" },
+S[3] == {
+         ClassName        -> GP,
+         SelfConjugate    -> False,
+         Goldstone        -> W,
+         Mass             -> {MW, Internal},
+         QuantumNumbers   -> {Q -> 1},
+         Width            -> {WW, 2.085},
+         PropagatorLabel  -> "GP",
+         PropagatorType   -> D,
+         PropagatorArrow  -> None,
+         PDG              -> 251,
+         ParticleName     -> "G+",
+         AntiParticleName -> "G-",
+         FullName         -> "GP" },
+(* The Higgs doublet *)
+S[22] == { 
+          ClassName -> Phi,  
+          SelfConjugate  -> False, 
+          Unphysical -> True, 
+          Indices -> {Index[SU2D]}, 
+          FlavorIndex -> SU2D, 
+          QuantumNumbers -> {Y -> 1/2}, 
+          Definitions -> { Phi[1] -> -I GP, Phi[2] -> (vev + h + I G0)/Sqrt[2] } },
+(* The dark scalar *)
+S[4] == { 
+         ClassName -> s0, 
+         SelfConjugate-> True, 
+         QuantumNumbers -> {}, 
+         Mass->{ms0,  125},  
+         Width->{ws0,0.}, 
+         ParticleName-> "~s0", 
+         PDG->255, 
+         PropagatorLabel->"s0", 
+         PropagatorType->ScalarDash, 
+         ParticleName     -> {"~s0" },
+         FullName         -> {"Dark scalar"} },
+
+(* Heavy electron: Physical *)
+F[16] == { 
+          ClassName        -> HE,
+          Indices          -> {},
+          SelfConjugate    -> False,
+          Mass             -> {mHE, 100.},
+          Width            -> {wHE, 1.},
+          QuantumNumbers   -> {Q -> -1, LeptonNumber -> 1},
+          PropagatorLabel  -> {"HE"},
+          PropagatorType   -> Straight, 
+          PropagatorArrow  -> Forward,
+          PDG              -> {111},
+          ParticleName     -> {"~he" },
+          AntiParticleName -> {"~HE"},
+          FullName         -> {"Heavy electron"} },
+(* Heavy electron: LR components *)
+F[17] == { 
+          ClassName      -> HEL,
+          Unphysical     -> True, 
+          Indices        -> {},
+          SelfConjugate  -> False,
+          QuantumNumbers -> {Y -> -1, LeptonNumber -> 1},
+          Definitions    -> { HEL[sp1_] :> Module[{sp2}, ProjM[sp1,sp2] HE[sp2]] } },
+F[18] == { 
+          ClassName      -> HER,
+          Unphysical     -> True, 
+          Indices        -> {},
+          SelfConjugate  -> False,
+          QuantumNumbers -> {Y -> -1, LeptonNumber -> 1},
+          Definitions    -> { HER[sp1_] :> Module[{sp2}, ProjP[sp1,sp2] HE[sp2]] } }
+};
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+(* Heavy electron gauge kinetic term *)
+
+LVLL := Block[{mu}, 
+  ExpandIndices[I*( HELbar.Ga[mu].DC[HEL, mu] + HERbar.Ga[mu].DC[HER, mu] )]];
+
+(* Heavy lepton Yukawa and bare mass terms *)
+LYukawaVLL := Block[{sp,ii,jj,cc,yukVLL,feynmangaugerules},
+  feynmangaugerules = If[Not[FeynmanGauge], {G0|GP|GPbar ->0}, {}];
+ 
+  yukVLL = ExpandIndices[- mHE HELbar.HER - yHEeR (s0 HELbar[sp].lR[sp,1]) - yHEmuR (s0 HELbar[sp].lR[sp,2]) - yHEtaR (s0 HELbar[sp].lR[sp,3])];
+  yukVLL+HC[yukVLL]/.feynmangaugerules
+ ];
+
+(* Scalar potential *)
+LScalar := Block[{ii,jj,mu,feynmangaugerules}, 
+  feynmangaugerules = If[Not[FeynmanGauge], {G0|GP|GPbar ->0}, {}];
+  ExpandIndices[DC[Phibar[ii],mu] DC[Phi[ii],mu] + muH^2 Phibar[ii] Phi[ii] - lam Phibar[ii] Phi[ii] Phibar[jj] Phi[jj] +
+                del[s0,mu]^2 - mus0^2/2 s0 s0 + lams0/4 (s0 s0)^2 + lams0h (s0 s0) Phibar[ii] Phi[ii], 
+                FlavorExpand->{SU2D,SU2W}]/.feynmangaugerules ];
+
+
+LNP := LVLL + LYukawaVLL + LScalar;
+

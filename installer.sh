@@ -21,6 +21,27 @@ fi
 
 
 
+#Get HepMC tarball
+hepmc="hepmc2.06.11.tgz"
+echo -n "Install HepMC (y/n)? "
+read answer
+if echo "$answer" | grep -iq "^y" ;then
+	mkdir hepMC_tmp
+	URL=http://hepmc.web.cern.ch/hepmc/releases/$hepmc
+	echo "[installer] getting HepMC"; wget $URL 2>/dev/null || curl -O $URL; tar -zxf $hepmc -C hepMC_tmp  --strip-components 1;
+	mkdir HepMC; mkdir HepMC_build;
+	echo "Installing HepMC in HepMC";
+	cd HepMC_build;
+	../hepMC_tmp/configure --prefix=$homeDIR/HepMC --with-momentum=GEV --with-length=MM;
+	make;
+	make check;
+	make install;
+
+	#Clean up
+	cd $homeDIR;
+	rm -rf hepMC_tmp; rm $hepmc; rm -rf HepMC_build;
+fi
+
 
 madgraph="MG5_aMC_v2.8.2.tar.gz"
 URL=https://launchpad.net/mg5amcnlo/2.0/2.8.x/+download/$madgraph
@@ -49,7 +70,7 @@ if echo "$answer" | grep -iq "^y" ;then
 		echo "[installer] getting Pythia"; wget $URL 2>/dev/null || curl -O $URL; tar -zxf $pythia -C pythia8 --strip-components 1;
 		echo "Installing Pythia in pythia8";
 		cd pythia8;
-		./configure --with-root=$ROOTSYS --prefix=$homeDIR/pythia8 --with-gzip
+		./configure --with-hepmc2=../HepMC  --with-root=$ROOTSYS --prefix=$homeDIR/pythia8 --with-gzip
 		make -j4; make install;
 		cd $homeDIR
 		rm $pythia;
@@ -57,7 +78,6 @@ if echo "$answer" | grep -iq "^y" ;then
 		echo "[installer] gzip is required. Try to install it with sudo apt-get install gzip";
 	fi
 fi
-
 
 echo -n "Install Delphes (y/n)? "
 read answer
@@ -72,24 +92,3 @@ if echo "$answer" | grep -iq "^y" ;then
 fi
 
 
-echo -n "Install CheckMATE (y/n)? "
-read answer
-if echo "$answer" | grep -iq "^y" ;then
-  echo "[installer] getting CheckMATE";
-  git clone git@github.com:CheckMATE2/checkmate2.git CheckMATE2;
-  cd CheckMATE2;
-  rm -rf .git
-  autoreconf -i -f;
-  ./configure --with-rootsys=$ROOTSYS --with-delphes=$homeDIR/Delphes --with-pythia=$homeDIR/pythia8 --with-madgraph=$homeDIR/MG5
-  echo "[installer] installing CheckMATE";
-  make -j4
-       cd $homeDIR
-  echo "[installer] Adding new analyses to CheckMATE";
-#  cp -r myCheckMateFiles/tools/* CheckMATE2/tools/;
-#  cp -r myCheckMateFiles/data/* CheckMATE2/data/;
-  cd CheckMATE2;
-  echo "[installer] recompiling CheckMATE";
-  make;
-  cd $homeDIR
-
-fi

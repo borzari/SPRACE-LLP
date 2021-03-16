@@ -1,9 +1,8 @@
-import model FreezeInLeptons
+import model ../../FreezeInLeptons
 generate p p > ~he ~HE, (~he > l- ~s0), (~HE > l+ ~s0)
-output NAME_OF_THE_FOLDER
+output ../../pp2DMDM
 launch
-shower = Pythia8
-detector = Delphes
-param_card_FIMP_lepton.dat
-run_card_FIMP_lepton.dat
-delphes_card.dat
+done
+../../configuration_files/param_card_FIMP_lepton.dat
+../../configuration_files/run_card_FIMP_lepton.dat
+done

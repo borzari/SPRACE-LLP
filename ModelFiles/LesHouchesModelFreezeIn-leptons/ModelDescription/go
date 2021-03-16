@@ -1,0 +1,5 @@
+pdflatex --shell-escape modeldescription
+bibtex modeldescription
+pdflatex --shell-escape modeldescription
+pdflatex --shell-escape modeldescription
+rm -f *.aux *.log *.out *.toc *.blg *.dvi  *.t1 *.1 *.mp *.gz

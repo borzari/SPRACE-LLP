@@ -1,0 +1,156 @@
+\pdfoutput=1
+\documentclass[a4paper,11pt]{article}
+\usepackage{jheppub,slashed}
+\usepackage[utf8]{inputenc}
+
+
+% %%%%%%%%%%%%%% Begin Commands %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\beq}{\begin{eqnarray}}% can be used as {equation} or {eqnarray}
+\newcommand{\eeq}{\end{eqnarray}}
+\newcommand{\be}{\begin{equation}}% can be used as {equation} or {eqnarray}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\nn}{\nonumber}
+\def\ltap{\ \raise.3ex\hbox{$<$\kern-.75em\lower1ex\hbox{$\sim$}}\ }
+\def\gtap{\ \raise.3ex\hbox{$>$\kern-.75em\lower1ex\hbox{$\sim$}}\ }
+\def\CO{{\cal O}}
+\def\CL{{\cal L}}
+\def\CM{{\cal M}}
+\def\tr{{\rm\ Tr}}
+\def\CO{{\cal O}}
+\def\CL{{\cal L}}
+\def\CM{{\cal M}}
+\def\mpl{M_{\rm Pl}}
+\newcommand{\bel}[1]{\be\label{#1}}
+\def\al{\alpha}
+\def\bt{\beta}
+\def\eps{\epsilon}
+\def\eg{{\it e.g.}}
+\def\ie{{\it i.e.}}
+\def\mn{{\mu\nu}}
+\newcommand{\rep}[1]{{\bf #1}}
+\def\bsp#1\esp{\begin{split}#1\end{split}} 
+\def\bea{\begin{eqnarray}}
+\def\eea{\end{eqnarray}}
+\newcommand{\eref}[1]{(\ref{#1})}
+\newcommand{\Eref}[1]{Eq.~(\ref{#1})}
+\newcommand{\Erefs}[1]{Eqs.~(\ref{#1})}
+\newcommand{\gsim}{ \mathop{}_{\textstyle \sim}^{\textstyle >} }
+\newcommand{\lsim}{ \mathop{}_{\textstyle \sim}^{\textstyle <} }
+\newcommand{\vev}[1]{ \left\langle {#1} \right\rangle }
+\newcommand{\bra}[1]{ \langle {#1} | }
+\newcommand{\ket}[1]{ | {#1} \rangle }
+\newcommand{\fb}{\,{\rm fb}^{-1}}
+\newcommand{\ev}{{\rm eV}}
+\newcommand{\kev}{{\rm keV}}
+\newcommand{\Mev}{{\rm MeV}}
+\newcommand{\gev}{{\rm GeV}}
+\newcommand{\tev}{{\rm TeV}}
+\newcommand{\mev}{{\rm MeV}}
+\newcommand{\meV}{{\rm meV}}
+\newcommand{\mnu}{\ensuremath{m_\nu}}
+\newcommand{\nnu}{\ensuremath{n_\nu}}
+\newcommand{\mlr}{\ensuremath{m_{lr}}}
+\newcommand{\acc}{\ensuremath{{\cal A}}}
+\newcommand{\disc}[1]{{\bf #1}} 
+\newcommand{\mh}{{m_h}}
+\newcommand{\hb}{{\cal \bar H}}
+\def\draftnote#1{{\bf #1}}
+\def\mysection#1{{{\bf #1}.~}}
+\newcommand{\vckm}{V_{\rm CKM}}
+\newcommand{\BR}{{\rm BR}}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\hc}{\rm h.c.}
+\definecolor{red1}{cmyk}{0,1,1,0.3}
+\newcommand{\redc}[1]{{\color{red1} #1}}
+
+\newcommand{\gSM}{{g_{\rm \scriptscriptstyle SM}}}
+\newcommand{\gDM}{{g_{\rm \scriptscriptstyle DM}}}
+\newcommand{\mDM}{{m_{\rm \scriptscriptstyle DM}}}
+\newcommand{\Mmed}{{M_{\rm med}}}
+\newcommand{\Qtr}{{Q_{\rm tr}}}
+\newcommand{\sigmaSI}{{\sigma_{\rm \scriptscriptstyle SI}}}
+\newcommand{\lmi}{{\lambda_{\rm \scriptscriptstyle mi}}}
+
+\newcommand{\rhochistar}{{\rho_{\chi^*}}}
+\newcommand{\rsol}{{r_{\odot}}}
+\newcommand{\soldist}{{R_{\odot}}}
+\newcommand{\Rss}{{R_{\rm \scriptscriptstyle ss}}}
+
+\newcommand{\andr}{\textcolor{magenta}}
+
+\newcommand{\eq}[1]{Eq.~(\ref{#1})}
+\newcommand{\amc}{{\sc MadGraph5\textunderscore}a{\sc MC@NLO}}
+
+
+
+% =====================================================================
+% =====================================================================
+% =====================================================================
+
+
+
+\title{A simple model for the Les Houches non-thermal DM project}
+
+%%%% Pre-Print numbers may be put in jheppub.sty
+\author[a]{Andreas~Goudelis}
+
+\affiliation[a]{LPTHE, Sorbonne Universit\'es, UPMC, UMR 7589 - CNRS, F-75252 Paris Cedex, France
+}
+% e-mail addresses: one for each author, in the same order as the authors
+\emailAdd{andreas.goudelis@lpthe.jussieu.fr}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\abstract{
+Here's a short description of a potential model that we could use for our Les Houches LLP + non-thermal DM project.
+}
+
+\begin{document}
+
+\maketitle
+\flushbottom
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A simple model}\label{sec:modeldescriptions}
+
+We consider an extension of the Standard Model by an additional real scalar field $s$ that transforms trivially under $SU(3)_c \times SU(2)_L \times U(1)_Y$ as well as an additional vector-like charged lepton $E$ transforming as $\left( \mathbf{1}, \mathbf{1}, \mathbf{-1} \right)$
+\footnote{The vector-like nature of $E$ ensures that the model is anomaly-free.}
+. Both particles are taken to be odd under a discrete ${\cal{Z}}_2$ symmetry, whereas all Standard Model fields are taken to be even. Under these assumptions, the Lagrangian of the model reads
+\begin{align}
+{\cal{L}} & = {\cal{L}}_{\rm SM} + \left(\partial_\mu s\right)\left(\partial^\mu s\right) - \frac{\mu_s^2}{2} s^2 + \frac{\lambda_s}{4} s^4 + \lambda_{sh} s^2 \left(H^\dagger H\right) \\ \nonumber
+& + i \left( \bar{E}_L \slashed{D} E_L  + \bar{E}_R \slashed{D} E_R \right) - \left( m_{E} \bar{E}_L E_R + y_{sEe} s \bar{E}_L e_R + {\rm{h.c.}} \right) 
+\end{align}
+where $E_{L,R}$ and $e_R$ are the left- and right-handed components of the heavy lepton and the right-handed component of the Standard Model electron respectively and for simplicity we have neglected couplings to the second and third generation leptons. The model is described by five free parameters, namely
+\begin{equation}
+\mu_s, \ \lambda_s, \ \lambda_{sh}, \ m_E, \ y_{sEe}
+\end{equation}
+out of which $\lambda_s$ is irrelevant for our purposes whereas $\mu_s$ can be traded for the physical mass of $s$ through
+\begin{equation}
+\mu_s^2 = m_s^2 + \lambda_{sh} v^2
+\end{equation}
+where $v$ is the Higgs field vacuum expectation value. For simplicity, we will also take the coupling $\lambda_{sh}$ to be identically zero. These choices leave us with only three free parameters
+\begin{equation}
+m_s, \ m_E, \ y_{sEe} \ .
+\end{equation}
+For $m_s < m_E$, the scalar $s$ becomes stable and can play the role of a dark matter candidate. 
+
+In this scenario, and given our choice of neglecting the Higgs portal interaction, there are two types of processes that contribute to the dark matter abundance. First, $s$ can be produced through the decay of the heavy lepton, $E \rightarrow s + e$. Secondly, it can be produced through annihilation processes of the type ${\rm SM} + E \rightarrow {\rm SM} + s$, where ${\rm SM}$ represents any allowed Standard Model particle, mediated by the $t$-channel exchange of an ordinary electron. Note that the heavy lepton is kept in thermal equilibrium with the Standard Model plasma due to its gauge interactions.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliography{biblio}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\href}[2]{#2}\begingroup\raggedright\begin{thebibliography}{10}
+
+
+
+\end{thebibliography}\endgroup
+
+\end{document}
+
+
