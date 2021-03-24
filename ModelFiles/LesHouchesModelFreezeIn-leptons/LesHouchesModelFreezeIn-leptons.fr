@@ -154,7 +154,7 @@ LVLL := Block[{mu},
 LYukawaVLL := Block[{sp,ii,jj,cc,yukVLL,feynmangaugerules},
   feynmangaugerules = If[Not[FeynmanGauge], {G0|GP|GPbar ->0}, {}];
  
-  yukVLL = ExpandIndices[- mHE HELbar.HER - yHEeR (s0 lRbar[sp,1].HEL[sp]) - yHEmuR (s0 lRbar[sp,2].HEL[sp]) - yHEtaR (s0 lRbar[sp,3].HEL[sp])];
+  yukVLL = ExpandIndices[- mHE HELbar.HER - yHEeR (s0 lRbar[sp,1].CC[HE][sp]) - yHEmuR (s0 lRbar[sp,2].CC[HE][sp]) - yHEtaR (s0 lRbar[sp,3].CC[HE][sp])];
   yukVLL+HC[yukVLL]/.feynmangaugerules
  ];
 

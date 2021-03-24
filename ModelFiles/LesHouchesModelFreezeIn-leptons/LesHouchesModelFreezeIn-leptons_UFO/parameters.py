@@ -1,6 +1,6 @@
 # This file was automatically created by FeynRules 2.3.43
-# Mathematica version: 12.2.0 for Linux x86 (64-bit) (December 12, 2020)
-# Date: Tue 16 Mar 2021 11:14:48
+# Mathematica version: 12.1.0 for Linux x86 (64-bit) (March 18, 2020)
+# Date: Tue 23 Mar 2021 22:16:21
 
 
 
@@ -112,6 +112,54 @@ ymtau = Parameter(name = 'ymtau',
                   texname = '\\text{ymtau}',
                   lhablock = 'YUKAWA',
                   lhacode = [ 15 ])
+
+QS = Parameter(name = 'QS',
+               nature = 'external',
+               type = 'real',
+               value = 100,
+               texname = 'Q_s',
+               lhablock = 'FRBlock',
+               lhacode = [ 1 ])
+
+yHEeR = Parameter(name = 'yHEeR',
+                  nature = 'external',
+                  type = 'real',
+                  value = 0.00002,
+                  texname = 'y_{\\text{HEeR}}',
+                  lhablock = 'FRBlock',
+                  lhacode = [ 2 ])
+
+yHEmuR = Parameter(name = 'yHEmuR',
+                   nature = 'external',
+                   type = 'real',
+                   value = 0.00002,
+                   texname = 'y_{\\text{HEmuR}}',
+                   lhablock = 'FRBlock',
+                   lhacode = [ 3 ])
+
+yHEtaR = Parameter(name = 'yHEtaR',
+                   nature = 'external',
+                   type = 'real',
+                   value = 0.00002,
+                   texname = 'y_{\\text{HEtaR}}',
+                   lhablock = 'FRBlock',
+                   lhacode = [ 4 ])
+
+lams0h = Parameter(name = 'lams0h',
+                   nature = 'external',
+                   type = 'real',
+                   value = 0.02,
+                   texname = '\\lambda _{\\text{s0h}}',
+                   lhablock = 'FRBlock',
+                   lhacode = [ 5 ])
+
+lams0 = Parameter(name = 'lams0',
+                  nature = 'external',
+                  type = 'real',
+                  value = 0.1,
+                  texname = '\\lambda _{\\text{s0}}',
+                  lhablock = 'FRBlock',
+                  lhacode = [ 6 ])
 
 MZ = Parameter(name = 'MZ',
                nature = 'external',
